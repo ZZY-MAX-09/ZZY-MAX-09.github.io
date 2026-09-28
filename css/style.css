@@ -335,7 +335,7 @@ a:hover { text-decoration: underline; }
 
 /* ---------- 底部「运行维护」向下箭头入口 ---------- */
 .mm-entry {
-  padding: 30px 0 66px;
+  padding: 24px 0 56px;
   text-align: center;
   background: var(--bg);
 }
@@ -343,18 +343,15 @@ a:hover { text-decoration: underline; }
 .mm-arrow {
   position: relative;
   display: block;
-  width: 100%;
-  max-width: 520px;
-  height: 148px;
+  width: 240px;
+  height: 84px;
   margin: 0 auto;
   padding: 0;
-  border: 0;
   background: none;
-  font: inherit;
-  color: inherit;
-  cursor: pointer;
+  text-decoration: none;
   -webkit-tap-highlight-color: transparent;
 }
+.mm-arrow:hover { text-decoration: none; }
 
 .mm-arrow-shape {
   position: absolute;
@@ -379,45 +376,34 @@ a:hover { text-decoration: underline; }
   stroke: var(--accent);
 }
 
-.mm-arrow-body {
+.mm-arrow-title {
   position: relative;
   display: block;
-  padding: 26px 24px 0;
-}
-
-.mm-arrow-title {
-  display: block;
-  font-size: 21px;
+  padding-top: 13px;
+  font-size: 16px;
   font-weight: 600;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  line-height: 1.4;
   color: var(--accent);
 }
 
-.mm-arrow-sub {
-  display: block;
-  margin-top: 4px;
-  color: var(--muted);
-  font-size: 13px;
-}
-
-/* 箭头尖端的两个小勾（⌄⌄），展开时翻转朝上 */
+/* 箭头尖端的两个小勾（⌄⌄） */
 .mm-chev {
   position: absolute;
   left: 50%;
-  bottom: 16px;
+  bottom: 9px;
   transform: translateX(-50%);
   color: var(--accent);
-  transition: transform 0.2s ease;
 }
 
 .mm-chev > span {
   display: block;
-  width: 20px;
-  height: 20px;
-  margin: -8px auto 0;
+  width: 13px;
+  height: 13px;
+  margin: -5px auto 0;
   border-left: 2px solid currentColor;
   border-bottom: 2px solid currentColor;
-  border-radius: 0 0 0 3px;
+  border-radius: 0 0 0 2px;
   transform: rotate(-45deg);
   animation: mmFloat 1.9s ease-in-out infinite;
 }
@@ -427,55 +413,9 @@ a:hover { text-decoration: underline; }
   animation-delay: 0.18s;
 }
 
-.mm-arrow[aria-expanded="true"] .mm-chev {
-  transform: translateX(-50%) rotate(180deg);
-}
-.mm-arrow[aria-expanded="true"] .mm-chev > span { animation: none; }
-
 @keyframes mmFloat {
   0%, 100% { transform: rotate(-45deg) translate(0, 0); }
-  50%      { transform: rotate(-45deg) translate(3px, 3px); }
-}
-
-.mm-panel {
-  margin: 16px 0 0;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: #fff;
-  overflow: hidden;
-  text-align: left;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
-}
-
-.mm-panel-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 10px 14px;
-  border-bottom: 1px solid var(--line);
-  background: var(--bg-alt);
-  font-size: 14px;
-}
-
-.mm-panel-actions { display: flex; align-items: center; gap: 14px; }
-
-.mm-close {
-  padding: 4px 12px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #fff;
-  color: var(--muted);
-  font-size: 13px;
-  cursor: pointer;
-}
-.mm-close:hover { border-color: var(--accent); color: var(--accent); }
-
-.mm-frame {
-  display: block;
-  width: 100%;
-  height: 860px;
-  border: 0;
+  50%      { transform: rotate(-45deg) translate(2px, 2px); }
 }
 
 /* ---------- 底部 CTA ---------- */
@@ -524,11 +464,8 @@ a:hover { text-decoration: underline; }
   .hero h1 { font-size: 27px; }
   .section { padding: 52px 0; }
   .footer-inner { flex-direction: column; align-items: flex-start; }
-  .mm-arrow { height: 132px; }
-  .mm-arrow-body { padding: 20px 18px 0; }
-  .mm-arrow-title { font-size: 19px; }
-  .mm-arrow-sub { font-size: 12px; }
-  .mm-frame { height: 720px; }
+  .mm-arrow { width: 200px; height: 74px; }
+  .mm-arrow-title { padding-top: 11px; font-size: 15px; }
 }
 
 /* ---------- 关于页 ---------- */
