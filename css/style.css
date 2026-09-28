@@ -335,18 +335,14 @@ a:hover { text-decoration: underline; }
 
 /* ---------- 底部「运行维护」向下箭头入口 ---------- */
 .mm-entry {
-  padding: 24px 0 56px;
+  padding: 16px 0 58px;
   text-align: center;
   background: var(--bg);
 }
 
 .mm-arrow {
-  position: relative;
-  display: block;
-  width: 240px;
-  height: 84px;
-  margin: 0 auto;
-  padding: 0;
+  display: inline-block;
+  padding: 4px 20px 0;
   background: none;
   text-decoration: none;
   will-change: transform;
@@ -354,48 +350,30 @@ a:hover { text-decoration: underline; }
 }
 .mm-arrow:hover { text-decoration: none; }
 
-.mm-arrow-shape {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.mm-arrow-shape polygon {
-  fill: #f4f9fe;
-  stroke: rgba(24, 95, 165, 0.32);
-  stroke-width: 1.5;
-  vector-effect: non-scaling-stroke;
-  transition: fill 0.18s ease, stroke 0.18s ease;
-}
-
-.mm-arrow:hover .mm-arrow-shape polygon,
-.mm-arrow:focus-visible .mm-arrow-shape polygon {
-  fill: var(--accent-soft);
-  stroke: var(--accent);
-}
-
 .mm-arrow-title {
-  position: relative;
   display: block;
-  padding-top: 13px;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
-  letter-spacing: 2px;
-  line-height: 1.4;
-  color: var(--accent);
+  letter-spacing: 5px;
+  text-indent: 5px;
+  line-height: 1.5;
+  color: var(--muted);
+  transition: color 0.18s ease;
 }
 
-/* 箭头尖端的两个小勾（⌄⌄） */
+.mm-arrow:hover .mm-arrow-title,
+.mm-arrow:focus-visible .mm-arrow-title { color: var(--accent); }
+
+/* 文字下面的两个小勾（⌄⌄） */
 .mm-chev {
-  position: absolute;
-  left: 50%;
-  bottom: 9px;
-  transform: translateX(-50%);
-  color: var(--accent);
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  transition: color 0.18s ease;
 }
+
+.mm-arrow:hover .mm-chev,
+.mm-arrow:focus-visible .mm-chev { color: var(--accent); }
 
 .mm-chev > span {
   display: block;
@@ -465,8 +443,7 @@ a:hover { text-decoration: underline; }
   .hero h1 { font-size: 27px; }
   .section { padding: 52px 0; }
   .footer-inner { flex-direction: column; align-items: flex-start; }
-  .mm-arrow { width: 200px; height: 74px; }
-  .mm-arrow-title { padding-top: 11px; font-size: 15px; }
+  .mm-arrow-title { font-size: 14px; }
 }
 
 /* ---------- 关于页 ---------- */

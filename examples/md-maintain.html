@@ -776,6 +776,17 @@
     try { cur = localStorage.getItem(KEY_CUR); } catch (e) {}
     switchTo(cur && data[cur] ? cur : list[0]);
 
+    /* 「云端设置 / 生成口令哈希」默认隐藏，避免把 Worker 地址暴露给普通访客；
+       自己要改配置时，用 ...md-maintain.html?setup=1 打开本页即可看到 */
+    (function () {
+      var show = location.search.indexOf('setup=1') > -1 || location.hash.indexOf('setup=1') > -1;
+      if (!show) {
+        var s = el('setupBtn'), h = el('hashBtn');
+        if (s) s.style.display = 'none';
+        if (h) h.style.display = 'none';
+      }
+    })();
+
     try { adminHash = sessionStorage.getItem(KEY_ADMIN) || ''; } catch (e) {}
     setAdminUI();
     cloudPull();
