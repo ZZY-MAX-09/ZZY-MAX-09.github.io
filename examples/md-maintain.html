@@ -249,6 +249,8 @@
     var KEY_CUR = 'mdm.current';
     var KEY_API = 'mdm.apiBase';
     var KEY_ADMIN = 'mdm.adminHash';   // 只存口令的 SHA-256，且只在当前标签页有效
+    // 默认云端地址（Worker 只读公开，地址放前端无风险；写入仍需管理员口令）
+    var DEFAULT_API = 'https://solitary-glitter-af03.m13618472002.workers.dev';
 
     var SEED = {
       'v2.6.1': {
@@ -400,9 +402,10 @@
 
     /* ---------- 云端读写 ---------- */
     function apiBase() {
-      var v = '';
-      try { v = localStorage.getItem(KEY_API) || ''; } catch (e) {}
-      return String(v).trim().replace(/\/+$/, '');
+      var v;
+      try { v = localStorage.getItem(KEY_API); } catch (e) {}
+      if (v === null || v === undefined) return DEFAULT_API;  // 从未改过设置 → 用默认云端
+      return String(v).trim().replace(/\/+$/, '');            // 清空后保存 = 只用本机
     }
 
     function setCloudState(text, cls) {
