@@ -71,7 +71,9 @@ export default {
     }
 
     // 只接受自己的站点，避免别人拿你的 Worker 当免费存储
-    if (!isAllowed(origin)) {
+    // 浏览器地址栏直接访问时没有 Origin 头（origin 为空），这种请求放行 GET；
+    // 带 Origin 的必须来自白名单站点；PUT 写入始终需要口令
+    if (origin && !isAllowed(origin)) {
       return json({ error: 'origin not allowed: ' + origin }, 403, origin);
     }
 
