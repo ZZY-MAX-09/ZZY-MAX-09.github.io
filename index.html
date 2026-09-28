@@ -180,6 +180,34 @@
     </div>
   </section>
 
+  <!-- 运行维护入口：页面底部的向下箭头，里面写着「运行维护」，点开就地展开维护工作台 -->
+  <section class="mm-entry" id="maintain">
+    <div class="container">
+      <button class="mm-arrow" id="mmToggle" type="button" aria-expanded="false" aria-controls="mmPanel">
+        <svg class="mm-arrow-shape" viewBox="0 0 520 148" preserveAspectRatio="none" aria-hidden="true">
+          <polygon points="0,0 520,0 520,76 260,148 0,76"></polygon>
+        </svg>
+        <span class="mm-arrow-body">
+          <span class="mm-arrow-title">运行维护</span>
+          <span class="mm-arrow-sub">写版本维护文档 · 看更新前后对比 · 点开即用</span>
+        </span>
+        <span class="mm-chev" aria-hidden="true"><span></span><span></span></span>
+      </button>
+
+      <div class="mm-panel" id="mmPanel" hidden>
+        <div class="mm-panel-bar">
+          <strong>MD 文档维护工作台</strong>
+          <span class="mm-panel-actions">
+            <a href="examples/md-maintain.html" target="_blank" rel="noopener">在新页面打开 ↗</a>
+            <button class="mm-close" id="mmClose" type="button">收起</button>
+          </span>
+        </div>
+        <iframe class="mm-frame" id="mmFrame" data-src="examples/md-maintain.html"
+                title="MD 文档维护工作台" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
   <section class="cta" id="download">
     <div class="container">
       <h2>准备好开始了吗？</h2>
@@ -220,6 +248,7 @@
         <a href="features.html">功能</a>
         <a href="tutorial.html">教程</a>
         <a href="docs.html">文档</a>
+        <a href="index.html#maintain">运行维护</a>
         <a href="about.html">关于</a>
       </nav>
       <p class="muted">© 2026 SteamCN-GameLauncher. 保留所有权利。</p>
@@ -321,6 +350,52 @@
           bySelection();
         }
       });
+    })();
+  </script>
+
+  <script>
+    // 底部「运行维护」向下箭头：点开就地展开维护工作台（首次点开才加载 iframe）
+    (function () {
+      var btn = document.getElementById('mmToggle');
+      var panel = document.getElementById('mmPanel');
+      var frame = document.getElementById('mmFrame');
+      var closeBtn = document.getElementById('mmClose');
+      if (!btn || !panel || !frame) return;
+
+      var loaded = false;
+
+      function open() {
+        if (!loaded) {
+          frame.setAttribute('src', frame.getAttribute('data-src'));
+          loaded = true;
+        }
+        panel.hidden = false;
+        btn.setAttribute('aria-expanded', 'true');
+      }
+
+      function close() {
+        panel.hidden = true;
+        btn.setAttribute('aria-expanded', 'false');
+      }
+
+      btn.addEventListener('click', function () {
+        if (panel.hidden) {
+          open();
+          panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          close();
+        }
+      });
+
+      if (closeBtn) {
+        closeBtn.addEventListener('click', function () {
+          close();
+          btn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+      }
+
+      // 支持用 /#maintain 直接打开
+      if (location.hash === '#maintain') open();
     })();
   </script>
 
