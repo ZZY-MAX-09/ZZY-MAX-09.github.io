@@ -527,13 +527,11 @@
 
     el('setupBtn').addEventListener('click', function () {
       var cur = apiBase();
-      var v = window.prompt('填写 Worker 地址（形如 https://xxx.<subdomain>.workers.dev，留空则只用本机）', cur);
+      var v = window.prompt('填写 Worker 地址（点确定生效；清空后点确定 = 只用本机）', cur);
       if (v === null) return;
       v = String(v).trim().replace(/\/+$/, '');
-      try {
-        if (v) localStorage.setItem(KEY_API, v); else localStorage.removeItem(KEY_API);
-      } catch (e) {}
-      status.textContent = v ? ('云端地址已设置：' + v) : '已清除云端地址，改为本机模式';
+      try { localStorage.setItem(KEY_API, v); } catch (e) {}
+      status.textContent = v ? ('云端地址已设置：' + v) : '已改为本机模式';
       cloudPull();
     });
 
