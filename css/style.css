@@ -349,6 +349,7 @@ a:hover { text-decoration: underline; }
   padding: 0;
   background: none;
   text-decoration: none;
+  will-change: transform;
   -webkit-tap-highlight-color: transparent;
 }
 .mm-arrow:hover { text-decoration: none; }

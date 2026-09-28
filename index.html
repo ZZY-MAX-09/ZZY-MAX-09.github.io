@@ -332,6 +332,40 @@
   </script>
 
   <script>
+    // 滚轮滑动时，箭头随滚动轻微向下位移（视差），滑动过程中能看出它在往下走
+    (function () {
+      var sec = document.querySelector('.mm-entry');
+      var arrow = document.querySelector('.mm-arrow');
+      if (!sec || !arrow) return;
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      var ticking = false;
+      var RANGE = 48;
+
+      function update() {
+        ticking = false;
+        var vh = window.innerHeight || document.documentElement.clientHeight;
+        var r = sec.getBoundingClientRect();
+        var p = (vh - r.top) / (vh + r.height);
+        if (p < 0) p = 0; else if (p > 1) p = 1;
+        var y = (p - 0.5) * RANGE;
+        arrow.style.transform = 'translateY(' + y.toFixed(1) + 'px)';
+      }
+
+      function onScroll() {
+        if (!ticking) {
+          ticking = true;
+          window.requestAnimationFrame(update);
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      update();
+    })();
+  </script>
+
+  <script>
     (function () {
       var target = document.getElementById('typing');
       if (!target) return;
